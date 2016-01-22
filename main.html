@@ -1,0 +1,160 @@
+<script>
+  //script for detecting IE 9-10 
+	if (document.documentMode===10 || document.documentMode===9) {
+  		document.getElementById("browserPane").innerHTML = "</br><div style='text-align:center'><img src='http://i.imgur.com/DDlfD1V.png'></img><h3>Many features do not work in Internet Explorer version 10 and older</br>We recommend <a href='https://www.google.com/chrome/browser/desktop/' style='color: blue'>Google Chrome</a></h3></div></br></br>";
+  	}
+</script> 
+
+
+<div id="browserPane"></div>
+<div class="mainPane" data-ng-controller="AdminCtrl">
+
+
+<div class="loader" ng-show="vm.loading">Initializing Hub</div>
+<div class="logo">
+	<a class="logo" data-ng-if="userIsAdmin" data-ng-model="adminMode" data-ng-click="logoClick()"></a>
+</div>
+</br>
+<div class="box-wrapper">
+	<section class="boxes">
+		<span class="columntitle">
+			<i class="intelicon-users-people-solid" style="text-shadow: none"></i> People 
+		</span>		
+		<div class="buttonbox" data-ng-repeat="item in vm.items | filter:{parent:'people'}" style="text-decoration:none;" target="_blank" title="Last updated: {{item.lastUpdated | date:'MM/dd/yy HH:mma'}}">
+			<div class="container-people" ng-style="{'background-color': item.color}" ng-switch="adminMode">
+				<a class="title" target="_blank" href="{{item.href}}" data-ng-click="item.click(item.label)">
+				<b>{{item.label}}</b>
+				</a>
+				<div class = "emailbut">
+					<a href = "mailto:{{item.mail}}?subject=Question about the InfoSec Hub {{item.label}} data"><i class="intelicon-email-message-solid"></i></a>
+				</div>
+				<div class="editIcon" ng-switch-when="true">
+					<i data-ng-click="item.editItem(item.label, item.data, item.headline, item.lowBound, item.highBound, item.lowColor, item.mail, item.id, item, item.lastUpdated, item.data2, item.headline2)" data-ng-if="adminMode" class="intelicon-edit"></i>
+					<script type="text/ng-template" id="modalContent.html"></script>
+				</div>
+				<a class="editFiller" target="_blank" ng-switch-default href="{{item.href}}"></a>
+				<a class="headline" target="_blank" href="{{item.href}}" data-ng-click="item.click(item.label)" style="color:black">
+					</br>
+					<div id='{{item.label}}'></div>
+					<span id="data-{{item.label}}">
+						{{item.data | number}}
+					</span>
+					{{item.headline}}</br></br>
+					<span id="data2-{{item.label}}">
+						{{item.data2 | number}}
+					</span>
+					{{item.headline2}}
+				</a>
+				<div class="gloss"></div>
+			</div>
+		</div>
+	</section>
+
+	<section class="boxes">
+		<span class="columntitle">
+			<i class="intelicon-alert-solid" style="text-shadow: none"></i> Threats
+		</span>
+		<div class="buttonbox" data-ng-repeat="item in vm.items | filter:{parent:'threat'}" style="text-decoration:none;" target="_blank" title="Last updated: {{item.lastUpdated | date:'MM/dd/yy HH:mma'}}">
+			<div class="container-threat" ng-style="{'background-color': item.color}" ng-switch="adminMode">
+				<a class="title" target="_blank" href="{{item.href}}" data-ng-click="item.click(item.label)" data-ng-click="item.click(item.label)">
+				<b>{{item.label}}</b>
+				</a>
+				<div class = "emailbut">
+					<a href = "mailto:{{item.mail}}?subject=Question about the InfoSec Hub {{item.label}} data"><i class="intelicon-email-message-solid"></i></a>
+				</div>
+				<div class="editIcon" ng-switch-when="true">
+					<i data-ng-click="item.editItem(item.label, item.data, item.headline, item.lowBound, item.highBound, item.lowColor, item.mail, item.id, item, item.lastUpdated, item.data2, item.headline2)" data-ng-if="adminMode" class="intelicon-edit"></i>
+					<script type="text/ng-template" id="modalContent.html"></script>
+				</div>
+				<a class="editFiller" target="_blank" ng-switch-default href="{{item.href}}"></a>
+				<a class="headline" target="_blank" href="{{item.href}}" data-ng-click="item.click(item.label)" style="color:black">
+					</br>
+					<div id='{{item.label}}'></div>
+					<span id="data-{{item.label}}">
+						{{item.data | number}}
+					</span>
+					{{item.headline}}</br></br>
+					<span id="data2-{{item.label}}">
+						{{item.data2 | number}}
+					</span>
+					{{item.headline2}}
+				</a>
+				<div class="gloss"></div>
+			</div>
+		</div>
+	</section>
+
+	<section class="boxes-patching">
+		<span class="columntitle">
+			<i class="intelicon-protection-solid" style="text-shadow: none"></i> Protection
+		</span>
+		<div class="buttonbox" data-ng-repeat="item in vm.items | filter:{parent:'patching'}" style="text-decoration:none;" target="_blank" title="Last updated: {{item.lastUpdated | date:'MM/dd/yy HH:mma'}}">
+			<div class="container-patching" ng-style="{'background-color': item.color}" ng-switch="adminMode">
+				<a class="title" target="_blank" href="{{item.href}}" data-ng-click="item.click(item.label)" data-ng-click="item.click(item.label)">
+					<b>{{item.label}}</b>
+				</a>
+				<div class = "emailbut">
+					<a href = "mailto:{{item.mail}}?subject=Question about the InfoSec Hub {{item.label}} data"><i class="intelicon-email-message-solid"></i></a>
+				</div>
+				<div class="editIcon" ng-switch-when="true">
+					<i data-ng-click="item.editItem(item.label, item.data, item.headline, item.lowBound, item.highBound, item.lowColor, item.mail, item.id, item, item.lastUpdated, item.data2, item.headline2)" data-ng-if="adminMode" class="intelicon-edit"></i>
+					<script type="text/ng-template" id="modalContent.html"></script>
+				</div>
+				<a class="editFiller" target="_blank" ng-switch-default href="{{item.href}}"></a>
+				<a class="headline" target="_blank" href="{{item.href}}" data-ng-click="item.click(item.label)" style="color:black">
+					</br>
+					<div id='{{item.label}}'></div>
+					<span id="data-{{item.label}}">
+						{{item.data | number}}
+					</span>
+					{{item.headline}}</br></br>
+					<span id="data2-{{item.label}}">
+						{{item.data2 | number}}
+					</span>
+					{{item.headline2}} 
+				</a>
+				<div class="gloss"></div>
+			</div>
+		</div>
+	</section>
+
+	<section class="boxes">
+		<span class="columntitle">
+			<i class="intelicon-line-chart-solid" style="text-shadow: none"></i> Performance
+		</span>
+		<div class="buttonbox" data-ng-repeat="item in vm.items | filter:{parent:'performance'}" style="text-decoration:none;" target="_blank" title="Last updated: {{item.lastUpdated | date:'MM/dd/yy HH:mma'}}">
+			<div class="container-performance" ng-style="{'background-color': item.color}" ng-switch="adminMode">
+				<a class="title" target="_blank" href="{{item.href}}" data-ng-click="item.click(item.label)" data-ng-click="item.click(item.label)">
+					<b>{{item.label}}</b>
+				</a>
+				<div class = "emailbut">
+					<a href = "mailto:{{item.mail}}?subject=Question about the InfoSec Hub {{item.label}} data"><i class="intelicon-email-message-solid"></i></a>
+				</div>
+				<div class="editIcon" ng-switch-when="true">
+					<i data-ng-click="item.editItem(item.label, item.data, item.headline, item.lowBound, item.highBound, item.lowColor, item.mail, item.id, item, item.lastUpdated, item.data2, item.headline2)" data-ng-if="adminMode" class="intelicon-edit"></i>
+					<script type="text/ng-template" id="modalContent.html"></script>
+				</div>
+				<a class="editFiller" target="_blank" ng-switch-default href="{{item.href}}"></a>
+				<a class="headline" target="_blank" href="{{item.href}}" data-ng-click="item.click(item.label)" style="color:black">
+					</br>
+					<div id='{{item.label}}'></div>
+					<span id="data-{{item.label}}">
+						{{item.data | number}}
+					</span>
+					{{item.headline}}</br></br>
+					<span id="data2-{{item.label}}">
+						{{item.data2 | number}}
+					</span>
+					{{item.headline2}}
+				</a>
+				<div class="gloss"></div>
+			</div>
+		</div>
+	</section>
+</div>
+	<div class="emaildevs">
+		<i class="intelicon-email-message-solid"></i>Want to 
+		<a href = "mailto:david.mcintyre@intel.com;yukti.abrol@intel.com?subject=Feature Request for the Infosec Metrics Hub" style="color:#0071c5">request a feature</a> or
+		<a href = "mailto:david.mcintyre@intel.com;yukti.abrol@intel.com?subject=Feature Request for the Infosec Metrics Hub" style="color:#0071c5">report a bug</a>?
+	</div>
+</div>
