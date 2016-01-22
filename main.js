@@ -8,15 +8,7 @@
 	function MainCtrl($route, $scope, $timeout, toaster, sharedProperties, $modal, headlineFactory, $http) {
 		var vm = this;
 
-		vm.items = [
-			// {label:'Malware',href:'https://sharepoint.amr.ith.intel.com/sites/iso/Shared%20Documents/InfoSec%20Command%20Center%20Dashboard/ISO%20Command%20and%20Control%20Malware.pptx'},
-			// // {label:'BCDR',href:'https://sharepoint.amr.ith.intel.com/sites/iso/Shared%20Documents/InfoSec%20Command%20Center%20Dashboard/ISO%20Command%20and%20Control%20BCDR.pptx'},
-			// {label:'BCDR',href:'/#/bcdr'},
-			// {label:'Vuln',href:'https://sharepoint.amr.ith.intel.com/sites/iso/Shared%20Documents/InfoSec%20Command%20Center%20Dashboard/ISO%20Command%20and%20Control%20Vulnerability%20and%20Compliance.pptx'},
-			// {label:'ITERP',href:'https://sharepoint.amr.ith.intel.com/sites/iso/Shared%20Documents/InfoSec%20Command%20Center%20Dashboard/ISO%20Command%20and%20Control%20ITERPs.pptx'},
-			// {label:'PAA',href:'https://sharepoint.amr.ith.intel.com/sites/iso/Shared%20Documents/InfoSec%20Command%20Center%20Dashboard/ISO%20Command%20and%20Control%20PAA.pptx'},
-			// {label:'SOx',href:'https://sharepoint.amr.ith.intel.com/sites/iso/Shared%20Documents/InfoSec%20Command%20Center%20Dashboard/ISO%20Command%20and%20Control%20CMF.pptx'}
-		];
+		vm.items = [];
 
 		init();
 
@@ -96,7 +88,6 @@
 			});
 		};	
 		}
-
 	}
 
 	/*
@@ -173,20 +164,6 @@
 
 		$scope.maxLength = 17; //max digits allowed
 
-/*
-		$scope.checkNoData = function() {
-			if(Number(sharedProperties.dataValue) == -1212) {
-			document.getElementById("dVal1").value = null;
-			document.getElementById("dVal1").disabled = true;
-		}
-
-
-			if(Number(sharedProperties.dataValue2) == -1212) {
-				document.getElementById("dVal2").value = null;
-				document.getElementById("dVal2").disabled = true;
-			}
-		}   */
-
 		$scope.characterLength = function (value, max) {
 			if(value && (value.toString().length >= max)) {
 				toaster.pop('warning', "No more characters allowed");
@@ -257,16 +234,7 @@
 
 			if (! $scope.owner.input.$error.email){
 				var overwrite = confirm('Are you sure you want to overwrite the current headline?');
-
-				// var overwrite = confirm.render('Confirm Headine', 'Are you sure you want to overwrite the current headline?')
-
-				// var popupWidth = window.innerWidth;
-				// var popupHeight = 
-
 				if(overwrite) {
-
-					//if(tileControls.Headine.indexOf)
-
 					headlineFactory.updateTileData();					
 					$modalInstance.close('tileControls');	
 				}

@@ -92,7 +92,7 @@
                     tile.color = red;
                   } 
                 }
-                else if (tile.lowColor === 2)                                     // 2 == red low color
+                else if (tile.lowColor === 2)    // 2 == red low color
                 {
                   if(tile.data < tile.lowBound) {
                     tile.color = red;
